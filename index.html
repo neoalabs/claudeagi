@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClaudeAGI.org - Exploring the Future of AI | Coming Soon</title>
     <meta name="description" content="ClaudeAGI.org is an upcoming community hub for AI enthusiasts and developers exploring the capabilities and future of generative AI. Join us soon for resources, discussions, and innovations.">
-    <meta name="keywords" content="AI, artificial intelligence, AI community, generative AI, AI resources">
+    <meta name="keywords" content="AI, artificial intelligence, AI community, generative AI, AI resources, Claude AI">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="ClaudeAGI.org - Exploring the Future of AI | Coming Soon">
     <meta property="og:description" content="ClaudeAGI.org is an upcoming community hub for AI enthusiasts and developers exploring the capabilities and future of generative AI.">
@@ -42,11 +42,16 @@
             --primary-color: #6610f2;
             --secondary-color: #0dcaf0;
             --tertiary-color: #fd7e14;
+            --quaternary-color: #ff2a6d;
             --background-color: #0f0f1a;
             --text-color: #f8f9fa;
             --card-bg: rgba(25, 26, 45, 0.85);
             --accent-color: #ff2a6d;
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --primary-color-rgb: 102, 16, 242;
+            --secondary-color-rgb: 13, 202, 240;
+            --tertiary-color-rgb: 253, 126, 20;
+            --quaternary-color-rgb: 255, 42, 109;
         }
 
         /* Global Styles */
@@ -65,6 +70,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            cursor: none;
         }
 
         /* Particle Background */
@@ -83,6 +89,8 @@
             margin: 0 auto;
             padding: 2rem 1rem;
             flex: 1;
+            position: relative;
+            z-index: 2;
         }
 
         /* Header Styles */
@@ -94,10 +102,12 @@
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             position: relative;
             margin-bottom: 2rem;
+            transform-style: preserve-3d;
+            perspective: 500px;
         }
 
         .logo-text {
@@ -107,12 +117,30 @@
             background-clip: text;
             color: transparent;
             margin-left: 0.5rem;
-            animation: pulse 3s infinite alternate;
+            animation: float 6s ease-in-out infinite;
+            position: relative;
         }
 
         .logo-dot {
+            display: inline-block;
             color: var(--accent-color);
-            animation: blink 2s infinite;
+            animation: pulse 2s infinite;
+            text-shadow: 0 0 10px rgba(255, 42, 109, 0.7);
+            position: relative;
+        }
+
+        .logo-badge {
+            position: absolute;
+            top: -15px;
+            right: -60px;
+            background: linear-gradient(135deg, var(--tertiary-color), var(--quaternary-color));
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            color: white;
+            transform: rotate(15deg);
+            box-shadow: 0 5px 15px rgba(var(--quaternary-color-rgb), 0.4);
+            animation: badgePulse 3s infinite alternate;
         }
 
         /* Main Content Styles */
@@ -122,91 +150,510 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 3rem 0;
+            padding: 1rem 0 3rem;
             position: relative;
             z-index: 1;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--tertiary-color));
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--tertiary-color), var(--quaternary-color));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             line-height: 1.2;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: gradientFlow 12s linear infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .h1-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .h1-decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            animation: decorationFloat 8s ease-in-out infinite;
+        }
+
+        .deco-1 {
+            top: -15px;
+            left: -20px;
+            animation-delay: 0s;
+        }
+
+        .deco-2 {
+            bottom: -10px;
+            right: -15px;
+            animation-delay: -2s;
+        }
+
+        @keyframes decorationFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(10deg);
+            }
         }
 
         .tagline {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 2.5rem;
             max-width: 800px;
             opacity: 0.9;
+            line-height: 1.6;
+            position: relative;
+            background: rgba(15, 15, 26, 0.5);
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateZ(0);
+        }
+
+        .tagline::before, .tagline::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            opacity: 0.7;
+            filter: blur(5px);
+            animation: taglineParticle 8s infinite alternate ease-in-out;
+        }
+
+        .tagline::before {
+            top: -10px;
+            left: 30%;
+            background: var(--secondary-color);
+            animation-delay: -4s;
+        }
+        
+        .tagline::after {
+            bottom: -10px;
+            right: 30%;
+            background: var(--tertiary-color);
+            animation-delay: -2s;
+        }
+
+        @keyframes taglineParticle {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(0, 30px);
+            }
         }
 
         /* Interactive Element */
+        .interactive-container {
+            width: 100%;
+            max-width: 850px;
+            margin: 2.5rem auto;
+            perspective: 1000px;
+            position: relative;
+        }
+
         .interactive-area {
             position: relative;
             width: 100%;
-            max-width: 800px;
-            height: 300px;
-            margin: 2rem auto;
+            height: 350px;
             background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             cursor: pointer;
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform-style: preserve-3d;
+            transform: rotateX(5deg);
         }
 
         .interactive-area:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transform: rotateX(0deg) translateY(-10px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            border-color: rgba(var(--secondary-color-rgb), 0.3);
+        }
+
+        .interactive-area::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            box-shadow: 0 0 50px rgba(var(--primary-color-rgb), 0.5) inset;
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 1;
+        }
+
+        .interactive-area:hover::after {
+            opacity: 1;
+        }
+
+        .interactive-area-glitch {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            mix-blend-mode: difference;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            background: linear-gradient(45deg, 
+                transparent 10%, 
+                rgba(var(--quaternary-color-rgb), 0.3) 10%, 
+                rgba(var(--quaternary-color-rgb), 0.3) 15%, 
+                transparent 15%);
+            background-size: 300% 300%;
+            animation: backgroundGlitch 8s ease infinite;
+            z-index: 1;
+        }
+
+        .interactive-area:hover .interactive-area-glitch {
+            opacity: 0.7;
+        }
+
+        @keyframes backgroundGlitch {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         #gpt-playground {
             width: 100%;
             height: 100%;
             position: relative;
+            z-index: 2;
+        }
+
+        .playground-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            z-index: 3;
+        }
+
+        .playground-header-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background-color: #ff5f57;
+        }
+
+        .dot-yellow {
+            background-color: #febc2e;
+        }
+
+        .dot-green {
+            background-color: #28c840;
+        }
+
+        .playground-title {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 0.8rem;
         }
 
         .chat-bubble {
             position: absolute;
-            padding: 12px 18px;
+            padding: 14px 20px;
             border-radius: 18px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             max-width: 70%;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s, transform 0.3s;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             color: var(--text-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            line-height: 1.4;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            line-height: 1.5;
+            z-index: 2;
         }
 
         .bubble-left {
-            background: rgba(30, 30, 50, 0.95);
+            background: rgba(30, 30, 50, 0.9);
             border-bottom-left-radius: 4px;
             left: 20px;
             text-align: left;
         }
 
         .bubble-right {
-            background: rgba(var(--primary-color-rgb), 0.8);
+            background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.9), rgba(var(--secondary-color-rgb), 0.7));
             border-bottom-right-radius: 4px;
             right: 20px;
             text-align: right;
-            --primary-color-rgb: 102, 16, 242;
+        }
+
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 15px;
+            border-radius: 50%;
+            bottom: -5px;
+            z-index: -1;
+            filter: blur(5px);
+            opacity: 0.3;
+        }
+
+        .bubble-left::before {
+            left: 10px;
+            background: rgba(30, 30, 50);
+        }
+
+        .bubble-right::before {
+            right: 10px;
+            background: var(--primary-color);
+        }
+
+        .typing-indicator {
+            display: inline-block;
+            width: 40px;
+            text-align: left;
+        }
+
+        .typing-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--text-color);
+            margin-right: 3px;
+            animation: typingAnimation 1.5s infinite;
+            opacity: 0.7;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.6s;
+            margin-right: 0;
+        }
+
+        @keyframes typingAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Interactive Overlay */
+        .interactive-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .overlay-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Countdown */
+        .countdown-container {
+            position: relative;
+            margin: 2.5rem 0;
+            perspective: 1000px;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            transform-style: preserve-3d;
+            transform: rotateX(10deg);
+            transition: transform 0.5s ease;
+        }
+
+        .countdown:hover {
+            transform: rotateX(0deg);
+        }
+
+        .countdown-title {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            color: var(--secondary-color);
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(25, 26, 45, 0.9);
+            padding: 1rem 0.5rem;
+            border-radius: 16px;
+            min-width: 90px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border-color: rgba(var(--secondary-color-rgb), 0.3);
+        }
+
+        .countdown-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(var(--primary-color-rgb), 0.4) inset;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .countdown-item:hover::after {
+            opacity: 1;
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--tertiary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover .countdown-number {
+            transform: scale(1.2);
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-item:hover .countdown-label {
+            color: var(--secondary-color);
+            opacity: 1;
         }
 
         /* Newsletter Form */
-        .newsletter-form {
-            margin-top: 3rem;
+        .newsletter-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
+            margin-top: 3.5rem;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .newsletter-container::before {
+            content: 'Stay Updated';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            color: var(--tertiary-color);
+        }
+
+        .newsletter-form {
+            width: 100%;
+            background: rgba(25, 26, 45, 0.9);
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform-style: preserve-3d;
+            transform: rotateX(10deg);
+        }
+
+        .newsletter-form:hover {
+            transform: rotateX(0deg) translateY(-10px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            border-color: rgba(var(--tertiary-color-rgb), 0.3);
         }
 
         .form-group {
@@ -216,78 +663,94 @@
 
         .form-control {
             width: 100%;
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.5rem;
             font-size: 1rem;
             border: none;
             border-radius: 50px;
-            background: var(--card-bg);
+            background: rgba(15, 15, 26, 0.7);
             color: var(--text-color);
             outline: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .form-control:focus {
-            box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.3);
-            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(var(--tertiary-color-rgb), 0.3);
+            border-color: var(--tertiary-color);
+            background: rgba(15, 15, 26, 0.9);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .btn {
             display: inline-block;
-            padding: 0.8rem 2rem;
+            padding: 1rem 2.5rem;
             font-size: 1rem;
             font-weight: 600;
             text-align: center;
             text-decoration: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             border: none;
             outline: none;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--tertiary-color), var(--quaternary-color));
             color: white;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(var(--tertiary-color-rgb), 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(var(--tertiary-color-rgb), 0.5);
         }
 
         .btn:active {
-            transform: translateY(1px);
+            transform: translateY(0) scale(0.98);
         }
 
-        .btn::after {
+        .btn::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
         }
 
-        .btn:hover::after {
-            transform: translateX(100%);
+        .btn:hover::before {
+            left: 100%;
         }
 
         /* Footer */
         footer {
-            padding: 2rem 0;
+            padding: 3rem 0 2rem;
             text-align: center;
             font-size: 0.9rem;
-            opacity: 0.7;
+            opacity: 0.8;
             margin-top: auto;
             position: relative;
+            perspective: 1000px;
         }
 
         .footer-content {
             max-width: 800px;
             margin: 0 auto;
+            transform-style: preserve-3d;
+            transform: rotateX(5deg);
+            transition: transform 0.5s ease;
+        }
+
+        .footer-content:hover {
+            transform: rotateX(0deg);
         }
 
         .social-links {
@@ -301,117 +764,428 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: var(--card-bg);
+            background: rgba(25, 26, 45, 0.7);
             color: var(--text-color);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link svg {
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
         }
 
         .social-link:hover {
-            transform: translateY(-3px);
-            background: var(--primary-color);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-link:hover svg {
+            transform: scale(1.2);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
         }
 
         .disclaimer {
-            margin-top: 1.5rem;
-            font-size: 0.8rem;
-            opacity: 0.8;
-            max-width: 600px;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
+            transition: opacity 0.3s ease;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            background: rgba(15, 15, 26, 0.3);
+        }
+
+        .disclaimer:hover {
+            opacity: 1;
         }
 
         /* Floating Elements */
         .floating-element {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(var(--primary-color-rgb), 0.7), rgba(var(--primary-color-rgb), 0));
-            filter: blur(60px);
+            filter: blur(50px);
             z-index: -1;
-            opacity: 0.7;
-            animation: float 15s infinite alternate ease-in-out;
+            opacity: 0.5;
+            pointer-events: none;
         }
 
         .float-1 {
-            width: 300px;
-            height: 300px;
-            top: 20%;
-            left: 10%;
-            background: radial-gradient(circle, rgba(102, 16, 242, 0.4), rgba(102, 16, 242, 0));
-            animation-delay: 0s;
+            width: 350px;
+            height: 350px;
+            top: 10%;
+            left: 5%;
+            background: radial-gradient(circle, rgba(102, 16, 242, 0.5), rgba(102, 16, 242, 0));
+            animation: floatAnimation 25s infinite alternate ease-in-out;
         }
 
         .float-2 {
-            width: 250px;
-            height: 250px;
-            bottom: 10%;
-            right: 15%;
-            background: radial-gradient(circle, rgba(13, 202, 240, 0.3), rgba(13, 202, 240, 0));
+            width: 300px;
+            height: 300px;
+            bottom: 5%;
+            right: 8%;
+            background: radial-gradient(circle, rgba(13, 202, 240, 0.4), rgba(13, 202, 240, 0));
+            animation: floatAnimation 20s infinite alternate-reverse ease-in-out;
             animation-delay: -5s;
         }
 
         .float-3 {
-            width: 180px;
-            height: 180px;
-            top: 60%;
-            left: 30%;
-            background: radial-gradient(circle, rgba(253, 126, 20, 0.3), rgba(253, 126, 20, 0));
+            width: 250px;
+            height: 250px;
+            top: 50%;
+            left: 25%;
+            background: radial-gradient(circle, rgba(253, 126, 20, 0.4), rgba(253, 126, 20, 0));
+            animation: floatAnimation 30s infinite alternate ease-in-out;
             animation-delay: -10s;
         }
 
-        /* Countdown */
-        .countdown {
-            display: flex;
-            gap: 1.5rem;
-            margin: 2rem 0;
-            justify-content: center;
+        .float-4 {
+            width: 200px;
+            height: 200px;
+            top: 30%;
+            right: 20%;
+            background: radial-gradient(circle, rgba(255, 42, 109, 0.4), rgba(255, 42, 109, 0));
+            animation: floatAnimation 22s infinite alternate-reverse ease-in-out;
+            animation-delay: -8s;
         }
 
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: var(--card-bg);
-            padding: 1rem;
+        @keyframes floatAnimation {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translate(100px, 50px) rotate(10deg) scale(1.1);
+            }
+            100% {
+                transform: translate(50px, 100px) rotate(-5deg) scale(0.9);
+            }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(25, 26, 45, 0.95);
+            color: var(--text-color);
+            padding: 1.2rem 2rem;
             border-radius: 12px;
-            min-width: 80px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(8px);
         }
 
-        .countdown-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
-        .countdown-number {
-            font-size: 2.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        /* Glowing effect */
+        .glow {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(var(--secondary-color-rgb), 0.8), rgba(var(--secondary-color-rgb), 0));
+            filter: blur(20px);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 9995;
+            transition: opacity 0.3s ease;
+            display: none;
         }
 
-        .countdown-label {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 0.3rem;
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            z-index: 9998;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s, background-color 0.3s;
+        }
+
+        /* Pulse animation for cursor on hover */
+        @keyframes cursorPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .cursor-pulse {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0;
+        }
+
+        .cursor-pulse.active {
+            animation: cursorPulse 1s infinite;
+        }
+
+        /* Cursor trail effect */
+        .cursor-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
+            z-index: 9996;
+            transition: opacity 0.5s ease, transform 0.2s ease;
+        }
+
+        /* Loading cursor */
+        .loading-cursor {
+            cursor: progress !important;
+        }
+
+        /* AI Pattern Background */
+        .ai-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.03) 2px, transparent 0),
+                linear-gradient(rgba(var(--primary-color-rgb), 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(var(--primary-color-rgb), 0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 25px 25px, 25px 25px;
+            background-position: 0 0, 0 0, 0 0;
+            z-index: -2;
+            opacity: 0.5;
+        }
+
+        /* Hidden until needed */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Mobile menu & responsiveness */
+        .mobile-menu-toggle {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(25, 26, 45, 0.9);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .mobile-menu-icon {
+            width: 20px;
+            height: 2px;
+            background: var(--text-color);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-icon::before,
+        .mobile-menu-icon::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-icon::before {
+            transform: translateY(-6px);
+        }
+
+        .mobile-menu-icon::after {
+            transform: translateY(6px);
+        }
+
+        /* Futuristic code rain effect */
+        .rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .rain-column {
+            position: absolute;
+            top: -20px;
+            font-family: monospace;
+            color: var(--primary-color);
+            font-size: 14px;
+            line-height: 1;
+            white-space: nowrap;
+            opacity: 0;
+            animation: rain linear infinite;
+        }
+
+        @keyframes rain {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(calc(100vh + 20px));
+                opacity: 0;
+            }
+        }
+
+        /* Easter Egg - Hidden Game */
+        .game-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .game-board {
+            width: 300px;
+            height: 300px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .game-cell {
+            background: rgba(var(--primary-color-rgb), 0.2);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-cell:hover {
+            background: rgba(var(--primary-color-rgb), 0.4);
+        }
+
+        .game-info {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .game-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Animations */
         @keyframes pulse {
             0% {
+                transform: scale(1);
                 opacity: 0.8;
             }
-            100% {
+            50% {
+                transform: scale(1.1);
                 opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
             }
         }
 
@@ -424,28 +1198,55 @@
             }
         }
 
-        @keyframes float {
+        @keyframes badgePulse {
             0% {
-                transform: translate(0, 0) rotate(0deg);
+                transform: rotate(15deg) scale(1);
+                box-shadow: 0 5px 15px rgba(var(--quaternary-color-rgb), 0.4);
             }
             100% {
-                transform: translate(30px, 30px) rotate(10deg);
+                transform: rotate(15deg) scale(1.1);
+                box-shadow: 0 10px 25px rgba(var(--quaternary-color-rgb), 0.6);
             }
         }
 
         /* Media Queries */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             h1 {
-                font-size: 2.5rem;
-            }
-            .tagline {
-                font-size: 1.2rem;
+                font-size: 3.5rem;
             }
             .interactive-area {
-                height: 250px;
+                height: 300px;
+            }
+            .countdown-item {
+                min-width: 80px;
+            }
+            .countdown-number {
+                font-size: 2.2rem;
+            }
+            .logo-badge {
+                right: -40px;
+            }
+            .custom-cursor, .cursor-dot, .cursor-pulse, .cursor-trail, .glow {
+                display: none;
+            }
+            body {
+                cursor: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .tagline {
+                font-size: 1.3rem;
+                padding: 1.2rem;
+            }
+            .interactive-area {
+                height: 280px;
             }
             .countdown {
-                gap: 0.8rem;
+                gap: 1rem;
             }
             .countdown-item {
                 min-width: 70px;
@@ -454,18 +1255,37 @@
             .countdown-number {
                 font-size: 1.8rem;
             }
+            .logo-badge {
+                font-size: 0.6rem;
+                padding: 3px 8px;
+                top: -10px;
+                right: -35px;
+            }
+            .newsletter-form {
+                padding: 1.5rem;
+            }
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            .float-1, .float-2, .float-3, .float-4 {
+                opacity: 0.3;
+            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             .logo {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
+            }
+            .tagline {
+                font-size: 1.1rem;
+                padding: 1rem;
             }
             .countdown-item {
                 min-width: 60px;
-                padding: 0.6rem;
+                padding: 0.7rem;
             }
             .countdown-number {
                 font-size: 1.5rem;
@@ -473,122 +1293,188 @@
             .countdown-label {
                 font-size: 0.7rem;
             }
-        }
-
-        /* Interactive Cursor */
-        .custom-cursor {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-color);
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            display: none;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 10000;
-            display: none;
-        }
-
-        /* Add support for mouse cursor effects only on non-touch devices */
-        @media (hover: hover) and (pointer: fine) {
-            .custom-cursor, .cursor-dot {
-                display: block;
+            .countdown {
+                gap: 0.5rem;
+            }
+            .btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+            .form-control {
+                padding: 1rem 1.2rem;
+            }
+            .interactive-area {
+                height: 250px;
+            }
+            .chat-bubble {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+            }
+            .deco-1, .deco-2 {
+                font-size: 1.2rem;
+            }
+            .social-link {
+                width: 40px;
+                height: 40px;
             }
         }
 
-        /* Toast notification */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--card-bg);
-            color: var(--text-color);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
+        @media (max-width: 375px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .countdown-item {
+                min-width: 50px;
+                padding: 0.5rem;
+            }
+            .countdown-number {
+                font-size: 1.3rem;
+            }
+            .countdown-title, .newsletter-container::before {
+                font-size: 0.8rem;
+            }
         }
 
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
+        /* Light/Dark Mode Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(25, 26, 45, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
-        
-        /* Loading cursor */
-        .loading-cursor {
-            cursor: progress !important;
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(var(--primary-color-rgb), 0.3);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover svg {
+            transform: rotate(30deg);
         }
     </style>
 </head>
 <body>
-    <!-- Cursor Effects -->
-    <div class="custom-cursor"></div>
-    <div class="cursor-dot"></div>
-    
     <!-- Background Effects -->
+    <div class="ai-pattern"></div>
     <div id="particles-js"></div>
+    <div class="rain-container" id="rain-container"></div>
+    
+    <!-- Floating Gradient Elements -->
     <div class="floating-element float-1"></div>
     <div class="floating-element float-2"></div>
     <div class="floating-element float-3"></div>
+    <div class="floating-element float-4"></div>
+    
+    <!-- Mouse/Cursor Effects -->
+    <div class="glow" id="glow"></div>
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-pulse"></div>
+    
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
+            <path d="M12 3v1"></path>
+            <path d="M12 20v1"></path>
+            <path d="M3 12h1"></path>
+            <path d="M20 12h1"></path>
+            <path d="M5.6 5.6l.7.7"></path>
+            <path d="M18.4 18.4l-.7-.7"></path>
+            <path d="M18.4 5.6l-.7.7"></path>
+            <path d="M5.6 18.4l.7-.7"></path>
+        </svg>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu-toggle">
+        <div class="mobile-menu-icon"></div>
+    </div>
 
     <div class="container">
         <header>
             <div class="logo">
                 <span class="logo-text">Claude<span class="logo-dot">AGI</span>.org</span>
+                <span class="logo-badge">Coming Soon</span>
             </div>
         </header>
 
         <main class="main-content">
-            <h1>Exploring the Future of AI</h1>
-            <p class="tagline">Join our community of AI enthusiasts, researchers, and developers as we build resources and tools for the next generation of intelligent systems.</p>
+            <div class="h1-wrapper">
+                <span class="h1-decoration deco-1">✦</span>
+                <h1>Exploring the Future of AI</h1>
+                <span class="h1-decoration deco-2">✧</span>
+            </div>
+            
+            <p class="tagline">Join our community of AI enthusiasts, researchers, and developers as we build resources, tools, and insights for the next generation of intelligent systems.</p>
 
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span id="days" class="countdown-number">00</span>
-                    <span class="countdown-label">Days</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="hours" class="countdown-number">00</span>
-                    <span class="countdown-label">Hours</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="minutes" class="countdown-number">00</span>
-                    <span class="countdown-label">Mins</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="seconds" class="countdown-number">00</span>
-                    <span class="countdown-label">Secs</span>
+            <div class="countdown-container">
+                <div class="countdown-title">Launching In</div>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span id="days" class="countdown-number">60</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours" class="countdown-number">12</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-number">34</span>
+                        <span class="countdown-label">Mins</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-number">56</span>
+                        <span class="countdown-label">Secs</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="interactive-area">
-                <div id="gpt-playground"></div>
+            <div class="interactive-container">
+                <div class="interactive-area" id="interactive-area">
+                    <div class="playground-header">
+                        <div class="playground-header-dots">
+                            <div class="header-dot dot-red"></div>
+                            <div class="header-dot dot-yellow"></div>
+                            <div class="header-dot dot-green"></div>
+                        </div>
+                        <div class="playground-title">AI Assistant Preview</div>
+                        <div></div>
+                    </div>
+                    <div id="gpt-playground"></div>
+                    <div class="interactive-area-glitch"></div>
+                    <div class="interactive-overlay" id="interactive-overlay"></div>
+                </div>
             </div>
 
-            <div class="newsletter-form">
-                <div class="form-group">
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email for updates">
+            <div class="newsletter-container">
+                <div class="newsletter-form">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email for early access and updates">
+                    </div>
+                    <button class="btn" id="subscribe-btn">Get Notified</button>
                 </div>
-                <button class="btn" id="subscribe-btn">Get Notified</button>
             </div>
         </main>
     </div>
@@ -596,7 +1482,7 @@
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="#" class="social-link" aria-label="Twitter">
+                <a href="#" class="social-link" aria-label="Twitter/X">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -624,17 +1510,57 @@
     <!-- Toast Notification -->
     <div class="toast" id="toast">Thank you! We'll notify you when we launch.</div>
 
+    <!-- Hidden Easter Egg Game -->
+    <div class="game-container" id="game-container">
+        <button class="game-close" id="game-close">×</button>
+        <div class="game-info" id="game-info">Tic-Tac-Toe vs AI</div>
+        <div class="game-board" id="game-board"></div>
+        <button class="btn" id="reset-game">New Game</button>
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     
     <script>
-        // Particle.js Configuration
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all interactive elements
+            initParticles();
+            initCursorEffects();
+            initChatSimulation();
+            initCountdown();
+            initNewsletterForm();
+            initInteractiveElements();
+            initCodeRain();
+            
+            // Set Konami code for easter egg game
+            let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            let konamiIndex = 0;
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === konamiCode[konamiIndex]) {
+                    konamiIndex++;
+                    
+                    if (konamiIndex === konamiCode.length) {
+                        activateEasterEgg();
+                        konamiIndex = 0;
+                    }
+                } else {
+                    konamiIndex = 0;
+                }
+            });
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', toggleTheme);
+        });
+        
+        // Initialize particles.js
+        function initParticles() {
             if (typeof particlesJS !== 'undefined') {
                 particlesJS('particles-js', {
                     "particles": {
                         "number": {
-                            "value": 80,
+                            "value": 50,
                             "density": {
                                 "enable": true,
                                 "value_area": 800
@@ -654,11 +1580,11 @@
                             }
                         },
                         "opacity": {
-                            "value": 0.5,
+                            "value": 0.3,
                             "random": true,
                             "anim": {
                                 "enable": true,
-                                "speed": 1,
+                                "speed": 0.5,
                                 "opacity_min": 0.1,
                                 "sync": false
                             }
@@ -675,14 +1601,14 @@
                         },
                         "line_linked": {
                             "enable": true,
-                            "distance": 150,
+                            "distance": 180,
                             "color": "#6610f2",
-                            "opacity": 0.4,
+                            "opacity": 0.2,
                             "width": 1
                         },
                         "move": {
                             "enable": true,
-                            "speed": 2,
+                            "speed": 1,
                             "direction": "none",
                             "random": true,
                             "straight": false,
@@ -700,7 +1626,7 @@
                         "events": {
                             "onhover": {
                                 "enable": true,
-                                "mode": "grab"
+                                "mode": "bubble"
                             },
                             "onclick": {
                                 "enable": true,
@@ -716,14 +1642,14 @@
                                 }
                             },
                             "bubble": {
-                                "distance": 400,
-                                "size": 40,
+                                "distance": 150,
+                                "size": 6,
                                 "duration": 2,
-                                "opacity": 8,
+                                "opacity": 0.5,
                                 "speed": 3
                             },
                             "repulse": {
-                                "distance": 200,
+                                "distance": 100,
                                 "duration": 0.4
                             },
                             "push": {
@@ -737,120 +1663,363 @@
                     "retina_detect": true
                 });
             }
-        });
-
-        // Custom Cursor
-        document.addEventListener('DOMContentLoaded', function() {
+        }
+        
+        // Custom cursor effects
+        function initCursorEffects() {
+            // Only initialize on non-touch devices
+            if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                return;
+            }
+            
             const cursor = document.querySelector('.custom-cursor');
             const cursorDot = document.querySelector('.cursor-dot');
+            const cursorPulse = document.querySelector('.cursor-pulse');
+            const glow = document.getElementById('glow');
             
-            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-                document.addEventListener('mousemove', e => {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
+            // Make custom cursors visible and hide default cursor
+            cursor.style.display = 'block';
+            cursorDot.style.display = 'block';
+            glow.style.display = 'block';
+            
+            // Position cursors based on mouse movement
+            document.addEventListener('mousemove', e => {
+                // Position main cursor and dot
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+                
+                // Position pulse if active
+                if (cursorPulse.classList.contains('active')) {
+                    cursorPulse.style.left = e.clientX + 'px';
+                    cursorPulse.style.top = e.clientY + 'px';
+                }
+                
+                // Position glow effect
+                glow.style.left = (e.clientX - 50) + 'px';
+                glow.style.top = (e.clientY - 50) + 'px';
+            });
+            
+            // Create cursor trails
+            document.addEventListener('mousemove', function(e) {
+                if (Math.random() > 0.7) { // Only create a trail dot sometimes
+                    const trail = document.createElement('div');
+                    trail.className = 'cursor-trail';
+                    trail.style.left = e.clientX + 'px';
+                    trail.style.top = e.clientY + 'px';
                     
-                    // The dot follows more closely
-                    cursorDot.style.left = e.clientX + 'px';
-                    cursorDot.style.top = e.clientY + 'px';
+                    // Randomize trail sizes slightly
+                    const size = 2 + Math.random() * 4;
+                    trail.style.width = size + 'px';
+                    trail.style.height = size + 'px';
+                    
+                    document.body.appendChild(trail);
+                    
+                    // Animate trail disappearing
+                    setTimeout(() => {
+                        trail.style.opacity = '0';
+                        trail.style.transform = 'scale(0.5)';
+                        
+                        // Remove from DOM after animation completes
+                        setTimeout(() => {
+                            trail.remove();
+                        }, 500);
+                    }, 100);
+                }
+            });
+            
+            // Add hover effect for interactive elements
+            const interactiveElements = document.querySelectorAll('button, a, .interactive-area, input, .countdown-item, .theme-toggle');
+            
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    // Update cursor appearance
+                    cursor.style.width = '60px';
+                    cursor.style.height = '60px';
+                    cursor.style.borderColor = 'var(--secondary-color)';
+                    cursor.style.backgroundColor = 'rgba(var(--secondary-color-rgb), 0.1)';
+                    
+                    // Change cursor dot color
+                    cursorDot.style.background = 'var(--tertiary-color)';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    
+                    // Activate pulse animation
+                    cursorPulse.classList.add('active');
+                    cursorPulse.style.display = 'block';
+                    cursorPulse.style.left = cursor.style.left;
+                    cursorPulse.style.top = cursor.style.top;
+                    
+                    // Brighten glow effect
+                    glow.style.opacity = '0.8';
                 });
                 
-                // Add hover effect for interactive elements
-                const interactives = document.querySelectorAll('button, a, .interactive-area, input');
-                
-                interactives.forEach(el => {
-                    el.addEventListener('mouseenter', () => {
-                        cursor.style.width = '60px';
-                        cursor.style.height = '60px';
-                        cursor.style.backgroundColor = 'rgba(102, 16, 242, 0.2)';
-                    });
+                el.addEventListener('mouseleave', () => {
+                    // Reset cursor styles
+                    cursor.style.width = '40px';
+                    cursor.style.height = '40px';
+                    cursor.style.borderColor = 'var(--primary-color)';
+                    cursor.style.backgroundColor = 'transparent';
                     
-                    el.addEventListener('mouseleave', () => {
-                        cursor.style.width = '40px';
-                        cursor.style.height = '40px';
-                        cursor.style.backgroundColor = 'transparent';
-                    });
+                    // Reset cursor dot
+                    cursorDot.style.background = 'var(--secondary-color)';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                    
+                    // Deactivate pulse
+                    cursorPulse.classList.remove('active');
+                    cursorPulse.style.display = 'none';
+                    
+                    // Reset glow
+                    glow.style.opacity = '0.5';
                 });
-            }
-        });
-
-        // Interactive Chat Simulation
-        document.addEventListener('DOMContentLoaded', function() {
+            });
+        }
+        
+        // Interactive chat simulation
+        function initChatSimulation() {
             const playground = document.getElementById('gpt-playground');
+            
+            // Define chat messages for the simulation
             const messages = [
-                { text: "What's ClaudeAGI.org about?", position: { top: '30px', left: '0' }, class: 'bubble-left' },
-                { text: "We're building a community-driven AI resource hub!", position: { top: '90px', right: '0' }, class: 'bubble-right' },
-                { text: "When will it launch?", position: { top: '150px', left: '0' }, class: 'bubble-left' },
-                { text: "Soon! Join our waitlist for early access.", position: { top: '210px', right: '0' }, class: 'bubble-right' }
+                { text: "What's ClaudeAGI.org about?", position: { top: '60px', left: '0' }, class: 'bubble-left' },
+                { text: "We're building a community-driven AI resource hub!", position: { top: '120px', right: '0' }, class: 'bubble-right' },
+                { text: "What resources will it offer?", position: { top: '180px', left: '0' }, class: 'bubble-left' },
+                { text: "Tutorials, tools, datasets, and a collaborative space for AI enthusiasts.", position: { top: '240px', right: '0' }, class: 'bubble-right' },
+                { text: "When will it launch?", position: { top: '300px', left: '0' }, class: 'bubble-left' },
+                { 
+                    text: `<div class="typing-indicator"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`, 
+                    position: { top: '300px', right: '0' }, 
+                    class: 'bubble-right typing',
+                    typingReplace: "Soon! Join our waitlist for early access."
+                }
             ];
             
-            // Create chat bubbles
             let currentBubble = 0;
+            let isTypingShown = false;
             
+            // Function to create chat bubbles with a natural typing effect
             function createChatBubbles() {
                 if (currentBubble < messages.length) {
+                    const message = messages[currentBubble];
                     const bubble = document.createElement('div');
-                    bubble.className = `chat-bubble ${messages[currentBubble].class}`;
-                    bubble.textContent = messages[currentBubble].text;
+                    bubble.className = `chat-bubble ${message.class}`;
+                    bubble.innerHTML = message.text;
                     
                     // Set position
-                    for (const [key, value] of Object.entries(messages[currentBubble].position)) {
+                    for (const [key, value] of Object.entries(message.position)) {
                         bubble.style[key] = value;
                     }
                     
                     playground.appendChild(bubble);
                     
-                    // Animate in
+                    // Animate bubble in
                     setTimeout(() => {
                         bubble.style.opacity = '1';
-                        bubble.style.transform = 'translateY(0)';
+                        bubble.style.transform = 'translateY(0) scale(1)';
                     }, 100);
                     
                     currentBubble++;
                     
-                    // Schedule next bubble
-                    setTimeout(createChatBubbles, 1000);
+                    // If this is a typing indicator, replace it with actual text after delay
+                    if (message.typingReplace) {
+                        isTypingShown = true;
+                        setTimeout(() => {
+                            bubble.innerHTML = message.typingReplace;
+                            isTypingShown = false;
+                        }, 2000);
+                    }
+                    
+                    // Schedule next bubble with natural timing
+                    const delay = message.typingReplace ? 3500 : 1500;
+                    setTimeout(createChatBubbles, delay);
                 } else {
-                    // Reset and restart after a delay
+                    // Reset and restart after a longer delay
                     setTimeout(() => {
-                        const bubbles = document.querySelectorAll('.chat-bubble');
-                        bubbles.forEach(bubble => {
-                            bubble.style.opacity = '0';
-                            bubble.style.transform = 'translateY(20px)';
-                            setTimeout(() => {
-                                bubble.remove();
-                            }, 500);
-                        });
+                        // Don't restart if user is interacting with typing indicator
+                        if (isTypingShown) {
+                            setTimeout(resetChat, 3000);
+                            return;
+                        }
                         
-                        currentBubble = 0;
-                        setTimeout(createChatBubbles, 1000);
-                    }, 5000);
+                        resetChat();
+                    }, 6000);
                 }
             }
             
-            // Start the chat simulation
-            setTimeout(createChatBubbles, 1000);
-            
-            // Make interactive area interactive
-            playground.addEventListener('click', () => {
-                // Clear existing bubbles
+            function resetChat() {
                 const bubbles = document.querySelectorAll('.chat-bubble');
                 bubbles.forEach(bubble => {
                     bubble.style.opacity = '0';
-                    bubble.style.transform = 'translateY(20px)';
+                    bubble.style.transform = 'translateY(20px) scale(0.95)';
                     setTimeout(() => {
                         bubble.remove();
                     }, 500);
                 });
                 
-                // Reset and restart
                 currentBubble = 0;
-                setTimeout(createChatBubbles, 500);
+                setTimeout(createChatBubbles, 1000);
+            }
+            
+            // Add interactive particles when clicking on the chat area
+            const interactiveArea = document.getElementById('interactive-area');
+            const overlay = document.getElementById('interactive-overlay');
+            
+            interactiveArea.addEventListener('click', (e) => {
+                // Only restart chat if we clicked directly on the playground area
+                // and not on a specific bubble
+                if (e.target === playground || e.target === interactiveArea || e.target === overlay) {
+                    resetChat();
+                    createClickParticles(e);
+                }
             });
-        });
-
+            
+            // Also create particles on mouse move occasionally
+            interactiveArea.addEventListener('mousemove', (e) => {
+                if (Math.random() > 0.95) {
+                    createHoverParticles(e);
+                }
+            });
+            
+            // Start the chat simulation with slight delay
+            setTimeout(createChatBubbles, 1500);
+        }
+        
+        // Function to create particles on click
+        function createClickParticles(e) {
+            const overlay = document.getElementById('interactive-overlay');
+            const rect = overlay.getBoundingClientRect();
+            
+            // Calculate position relative to the overlay
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Create multiple particles in a circular burst
+            for (let i = 0; i < 12; i++) {
+                createParticle(x, y, 'click', i * 30);
+            }
+        }
+        
+        // Function to create particles on hover
+        function createHoverParticles(e) {
+            const overlay = document.getElementById('interactive-overlay');
+            const rect = overlay.getBoundingClientRect();
+            
+            // Calculate position relative to the overlay
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Create a single particle
+            createParticle(x, y, 'hover', Math.random() * 360);
+        }
+        
+        // Create a particle at the given position
+        function createParticle(x, y, type, angle) {
+            const overlay = document.getElementById('interactive-overlay');
+            const particle = document.createElement('div');
+            particle.className = 'overlay-particle';
+            
+            // Set initial position
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            
+            // Different styles based on particle type
+            if (type === 'click') {
+                const colors = ['#6610f2', '#0dcaf0', '#fd7e14', '#ff2a6d'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = 4 + Math.random() * 6;
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 10px ${color}`;
+                
+                // Calculate movement direction based on angle
+                const speed = 100 + Math.random() * 100;
+                const radians = angle * (Math.PI / 180);
+                const xSpeed = Math.cos(radians) * speed;
+                const ySpeed = Math.sin(radians) * speed;
+                
+                // Append to overlay
+                overlay.appendChild(particle);
+                
+                // Animate
+                particle.style.opacity = '1';
+                
+                // Use requestAnimationFrame for smooth animation
+                const startTime = performance.now();
+                const duration = 800 + Math.random() * 500;
+                
+                function animateParticle(timestamp) {
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Move outward with easing
+                    const easeProgress = 1 - Math.pow(1 - progress, 3); // Cubic ease out
+                    particle.style.left = (x + xSpeed * easeProgress) + 'px';
+                    particle.style.top = (y + ySpeed * easeProgress) + 'px';
+                    
+                    // Fade out toward the end
+                    if (progress > 0.7) {
+                        particle.style.opacity = (1 - ((progress - 0.7) / 0.3)).toString();
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animateParticle);
+                    } else {
+                        particle.remove();
+                    }
+                }
+                
+                requestAnimationFrame(animateParticle);
+            } else {
+                // Hover particles
+                const colors = ['rgba(102, 16, 242, 0.5)', 'rgba(13, 202, 240, 0.5)'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = 2 + Math.random() * 3;
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 5px ${color.replace('0.5', '0.8')}`;
+                
+                // Random direction but gentler
+                const speed = 20 + Math.random() * 30;
+                const radians = angle * (Math.PI / 180);
+                const xSpeed = Math.cos(radians) * speed;
+                const ySpeed = Math.sin(radians) * speed;
+                
+                overlay.appendChild(particle);
+                particle.style.opacity = '0.7';
+                
+                const startTime = performance.now();
+                const duration = 1000 + Math.random() * 1000;
+                
+                function animateParticle(timestamp) {
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Gentler movement
+                    particle.style.left = (x + xSpeed * progress) + 'px';
+                    particle.style.top = (y + ySpeed * progress) + 'px';
+                    
+                    // Fade out
+                    particle.style.opacity = (0.7 * (1 - progress)).toString();
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animateParticle);
+                    } else {
+                        particle.remove();
+                    }
+                }
+                
+                requestAnimationFrame(animateParticle);
+            }
+        }
+        
         // Countdown Timer
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set the launch date (2 months from now)
+        function initCountdown() {
+            // Set launch date (2 months from now)
             const now = new Date();
             const launchDate = new Date(now.getFullYear(), now.getMonth() + 2, now.getDate());
             
@@ -865,11 +2034,30 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
                 
-                // Update the countdown display
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                // Update the countdown display with smooth transitions
+                updateCountdownDigit('days', days);
+                updateCountdownDigit('hours', hours);
+                updateCountdownDigit('minutes', minutes);
+                updateCountdownDigit('seconds', seconds);
+            }
+            
+            // Helper function to update countdown digits with animation
+            function updateCountdownDigit(id, newValue) {
+                const element = document.getElementById(id);
+                const currentValue = element.textContent;
+                const newValueStr = newValue.toString().padStart(2, '0');
+                
+                if (currentValue !== newValueStr) {
+                    // Apply a subtle animation
+                    element.style.transform = 'translateY(-10px) scale(0.95)';
+                    element.style.opacity = '0.5';
+                    
+                    setTimeout(() => {
+                        element.textContent = newValueStr;
+                        element.style.transform = 'translateY(0) scale(1)';
+                        element.style.opacity = '1';
+                    }, 100);
+                }
             }
             
             // Initial update
@@ -877,10 +2065,10 @@
             
             // Update every second
             setInterval(updateCountdown, 1000);
-        });
-
+        }
+        
         // Newsletter Form
-        document.addEventListener('DOMContentLoaded', function() {
+        function initNewsletterForm() {
             const subscribeBtn = document.getElementById('subscribe-btn');
             const emailInput = document.getElementById('email');
             const toast = document.getElementById('toast');
@@ -889,24 +2077,16 @@
                 const email = emailInput.value.trim();
                 
                 if (!email) {
-                    toast.textContent = 'Please enter your email address.';
-                    toast.classList.add('show');
-                    
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 3000);
+                    showToast('Please enter your email address.');
+                    shakeElement(emailInput);
                     return;
                 }
                 
                 // Email validation
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(email)) {
-                    toast.textContent = 'Please enter a valid email address.';
-                    toast.classList.add('show');
-                    
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 3000);
+                    showToast('Please enter a valid email address.');
+                    shakeElement(emailInput);
                     return;
                 }
                 
@@ -914,24 +2094,32 @@
                 subscribeBtn.textContent = 'Subscribing...';
                 subscribeBtn.classList.add('loading-cursor');
                 document.body.classList.add('loading-cursor');
+                subscribeBtn.disabled = true;
                 
-                // Simulate API request
+                // Simulate API request with success indicators
                 setTimeout(() => {
-                    // Reset button
-                    subscribeBtn.textContent = 'Get Notified';
-                    subscribeBtn.classList.remove('loading-cursor');
-                    document.body.classList.remove('loading-cursor');
+                    // Create success particles around the button
+                    createSuccessParticles(subscribeBtn);
                     
-                    // Show success message
-                    toast.textContent = 'Thank you! We\'ll notify you when we launch.';
-                    toast.classList.add('show');
-                    
+                    // Reset button with slight delay
                     setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 3000);
-                    
-                    // Clear input
-                    emailInput.value = '';
+                        subscribeBtn.textContent = 'Get Notified';
+                        subscribeBtn.classList.remove('loading-cursor');
+                        document.body.classList.remove('loading-cursor');
+                        subscribeBtn.disabled = false;
+                        
+                        // Show success message
+                        showToast('Thank you! We\'ll notify you when we launch.');
+                        
+                        // Clear input with a nice transition
+                        emailInput.style.transition = 'all 0.3s ease';
+                        emailInput.style.backgroundColor = 'rgba(var(--tertiary-color-rgb), 0.2)';
+                        
+                        setTimeout(() => {
+                            emailInput.value = '';
+                            emailInput.style.backgroundColor = 'rgba(15, 15, 26, 0.7)';
+                        }, 300);
+                    }, 500);
                 }, 1500);
             });
             
@@ -941,25 +2129,449 @@
                     subscribeBtn.click();
                 }
             });
-        });
-
-        // Interactive elements animation
-        document.addEventListener('DOMContentLoaded', function() {
+        }
+        
+        // Success animation for subscription
+        function createSuccessParticles(element) {
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Create multiple particles around the button
+            for (let i = 0; i < 20; i++) {
+                const angle = Math.random() * 360;
+                const distance = 20 + Math.random() * 30;
+                const radians = angle * (Math.PI / 180);
+                
+                const x = centerX + Math.cos(radians) * distance;
+                const y = centerY + Math.sin(radians) * distance;
+                
+                const particle = document.createElement('div');
+                particle.className = 'cursor-trail';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.width = (3 + Math.random() * 4) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = '#fd7e14';
+                particle.style.opacity = '1';
+                particle.style.zIndex = '9999';
+                
+                document.body.appendChild(particle);
+                
+                // Animate particles outward
+                const speedX = (Math.random() - 0.5) * 5;
+                const speedY = (Math.random() - 0.5) * 5;
+                const duration = 1000 + Math.random() * 1000;
+                const startTime = performance.now();
+                
+                function animateParticle(timestamp) {
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    particle.style.left = (x + speedX * 20 * progress) + 'px';
+                    particle.style.top = (y + speedY * 20 * progress - progress * progress * 50) + 'px'; // Add some upward motion
+                    
+                    // Fade out gradually
+                    particle.style.opacity = (1 - progress).toString();
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animateParticle);
+                    } else {
+                        particle.remove();
+                    }
+                }
+                
+                requestAnimationFrame(animateParticle);
+            }
+        }
+        
+        // Show toast message
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+        
+        // Shake animation for invalid inputs
+        function shakeElement(element) {
+            element.style.animation = 'none';
+            
+            // Force reflow
+            void element.offsetWidth;
+            
+            element.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
+            element.addEventListener('animationend', () => {
+                element.style.animation = 'none';
+            }, {once: true});
+        }
+        
+        // Add shake animation
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes shake {
+                    10%, 90% { transform: translateX(-1px); }
+                    20%, 80% { transform: translateX(2px); }
+                    30%, 50%, 70% { transform: translateX(-4px); }
+                    40%, 60% { transform: translateX(4px); }
+                }
+            </style>
+        `);
+        
+        // Add hover effects to interactive elements
+        function initInteractiveElements() {
+            // 3D tilt effect for interactive area
+            const interactiveArea = document.getElementById('interactive-area');
+            
+            interactiveArea.addEventListener('mousemove', (e) => {
+                const rect = interactiveArea.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Calculate rotation based on mouse position
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20; // Reduce divisor for more dramatic effect
+                const rotateY = (centerX - x) / 20;
+                
+                // Apply rotation
+                interactiveArea.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            interactiveArea.addEventListener('mouseleave', () => {
+                // Reset rotation
+                interactiveArea.style.transition = 'transform 0.5s ease';
+                interactiveArea.style.transform = 'rotateX(5deg) rotateY(0deg)';
+                
+                // Remove transition after animation completes
+                setTimeout(() => {
+                    interactiveArea.style.transition = 'none';
+                }, 500);
+            });
+            
+            // Add glowing border effect on countdown items hover
             const countdownItems = document.querySelectorAll('.countdown-item');
             
             countdownItems.forEach(item => {
                 item.addEventListener('mouseenter', function() {
-                    const number = this.querySelector('.countdown-number');
-                    number.style.transform = 'scale(1.2)';
-                    number.style.transition = 'transform 0.3s';
+                    // Create glow effect around the item
+                    this.style.borderColor = 'rgba(var(--secondary-color-rgb), 0.5)';
+                    this.style.boxShadow = '0 0 20px rgba(var(--secondary-color-rgb), 0.3)';
                 });
                 
                 item.addEventListener('mouseleave', function() {
-                    const number = this.querySelector('.countdown-number');
-                    number.style.transform = 'scale(1)';
+                    this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.3)';
                 });
             });
-        });
+        }
+        
+        // Theme toggling functionality
+        function toggleTheme() {
+            // We'll just do a fun visual effect for now 
+            // In a real implementation, this would toggle between light/dark themes
+            
+            // Simulate a visual flash effect
+            const flash = document.createElement('div');
+            flash.style.position = 'fixed';
+            flash.style.top = '0';
+            flash.style.left = '0';
+            flash.style.width = '100vw';
+            flash.style.height = '100vh';
+            flash.style.backgroundColor = 'white';
+            flash.style.opacity = '0';
+            flash.style.transition = 'opacity 0.3s ease';
+            flash.style.zIndex = '10000';
+            flash.style.pointerEvents = 'none';
+            
+            document.body.appendChild(flash);
+            
+            // Flash effect
+            setTimeout(() => {
+                flash.style.opacity = '0.3';
+                
+                setTimeout(() => {
+                    flash.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        flash.remove();
+                        
+                        // Show toast indicating this feature is coming
+                        showToast('Theme toggle will be available at launch! 🎨');
+                    }, 300);
+                }, 100);
+            }, 10);
+            
+            // Rotate the toggle icon
+            const toggle = document.getElementById('theme-toggle');
+            toggle.style.transform = 'rotate(180deg)';
+            
+            setTimeout(() => {
+                toggle.style.transform = 'rotate(0deg)';
+            }, 500);
+        }
+        
+        // Initialize code rain effect
+        function initCodeRain() {
+            const rainContainer = document.getElementById('rain-container');
+            const symbols = '01010101ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+{}|:<>?';
+            const columnCount = Math.floor(window.innerWidth / 20); // Adjust spacing as needed
+            
+            // Create rain columns
+            for (let i = 0; i < columnCount; i++) {
+                const column = document.createElement('div');
+                column.className = 'rain-column';
+                
+                // Random positioning
+                column.style.left = (i * 20 + Math.random() * 10 - 5) + 'px';
+                
+                // Generate random length of characters
+                const length = 10 + Math.floor(Math.random() * 15);
+                let rainText = '';
+                
+                for (let j = 0; j < length; j++) {
+                    rainText += symbols.charAt(Math.floor(Math.random() * symbols.length));
+                }
+                
+                column.textContent = rainText;
+                
+                // Set random animation properties
+                const duration = 5 + Math.random() * 10;
+                column.style.animationDuration = duration + 's';
+                column.style.animationDelay = Math.random() * 5 + 's';
+                
+                rainContainer.appendChild(column);
+            }
+        }
+        
+        // Easter egg game (Tic-Tac-Toe)
+        function activateEasterEgg() {
+            const gameContainer = document.getElementById('game-container');
+            const gameBoard = document.getElementById('game-board');
+            const gameInfo = document.getElementById('game-info');
+            const resetGameBtn = document.getElementById('reset-game');
+            const closeBtn = document.getElementById('game-close');
+            
+            // Show game container
+            gameContainer.style.display = 'flex';
+            
+            // Initialize game board
+            gameBoard.innerHTML = '';
+            let currentBoard = ['', '', '', '', '', '', '', '', ''];
+            let currentPlayer = 'X';
+            let gameOver = false;
+            
+            // Create cells
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'game-cell';
+                cell.dataset.index = i;
+                
+                cell.addEventListener('click', () => {
+                    if (currentBoard[i] === '' && !gameOver && currentPlayer === 'X') {
+                        // Player's move
+                        currentBoard[i] = 'X';
+                        updateBoard();
+                        
+                        // Check for winner
+                        if (checkWinner()) {
+                            gameInfo.textContent = "You win! 🎉";
+                            gameOver = true;
+                            return;
+                        }
+                        
+                        // Check for draw
+                        if (currentBoard.every(cell => cell !== '')) {
+                            gameInfo.textContent = "It's a draw! 🤝";
+                            gameOver = true;
+                            return;
+                        }
+                        
+                        // AI's turn
+                        currentPlayer = 'O';
+                        gameInfo.textContent = "AI is thinking...";
+                        
+                        setTimeout(() => {
+                            makeAIMove();
+                            
+                            // Check for winner again
+                            if (checkWinner()) {
+                                gameInfo.textContent = "AI wins! 🤖";
+                                gameOver = true;
+                                return;
+                            }
+                            
+                            // Check for draw again
+                            if (currentBoard.every(cell => cell !== '')) {
+                                gameInfo.textContent = "It's a draw! 🤝";
+                                gameOver = true;
+                                return;
+                            }
+                            
+                            currentPlayer = 'X';
+                            gameInfo.textContent = "Your turn!";
+                        }, 700);
+                    }
+                });
+                
+                gameBoard.appendChild(cell);
+            }
+            
+            function updateBoard() {
+                const cells = gameBoard.querySelectorAll('.game-cell');
+                cells.forEach((cell, i) => {
+                    cell.textContent = currentBoard[i];
+                    cell.className = 'game-cell';
+                    if (currentBoard[i] === 'X') {
+                        cell.classList.add('cell-x');
+                    } else if (currentBoard[i] === 'O') {
+                        cell.classList.add('cell-o');
+                    }
+                });
+            }
+            
+            function checkWinner() {
+                const winPatterns = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+                    [0, 4, 8], [2, 4, 6]             // Diagonals
+                ];
+                
+                for (const pattern of winPatterns) {
+                    const [a, b, c] = pattern;
+                    if (currentBoard[a] && currentBoard[a] === currentBoard[b] && currentBoard[a] === currentBoard[c]) {
+                        // Highlight winning cells
+                        const cells = gameBoard.querySelectorAll('.game-cell');
+                        cells[a].classList.add('win');
+                        cells[b].classList.add('win');
+                        cells[c].classList.add('win');
+                        return true;
+                    }
+                }
+                
+                return false;
+            }
+            
+            function makeAIMove() {
+                // Simple AI that tries to win or block
+                // In a real implementation, you might use minimax algorithm
+                
+                // Check for win
+                const move = findBestMove();
+                currentBoard[move] = 'O';
+                updateBoard();
+            }
+            
+            function findBestMove() {
+                // Check if AI can win
+                const winMove = findWinningMove('O');
+                if (winMove !== -1) return winMove;
+                
+                // Check if player can win and block
+                const blockMove = findWinningMove('X');
+                if (blockMove !== -1) return blockMove;
+                
+                // Take center if available
+                if (currentBoard[4] === '') return 4;
+                
+                // Take a corner
+                const corners = [0, 2, 6, 8];
+                const availableCorners = corners.filter(i => currentBoard[i] === '');
+                if (availableCorners.length > 0) {
+                    return availableCorners[Math.floor(Math.random() * availableCorners.length)];
+                }
+                
+                // Take any available space
+                const availableMoves = currentBoard.map((cell, i) => cell === '' ? i : -1).filter(i => i !== -1);
+                if (availableMoves.length > 0) {
+                    return availableMoves[Math.floor(Math.random() * availableMoves.length)];
+                }
+                
+                return -1; // No moves available (shouldn't happen)
+            }
+            
+            function findWinningMove(player) {
+                const winPatterns = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+                    [0, 4, 8], [2, 4, 6]             // Diagonals
+                ];
+                
+                for (const pattern of winPatterns) {
+                    const [a, b, c] = pattern;
+                    // If two cells have the player's mark and the third is empty
+                    if (currentBoard[a] === player && currentBoard[b] === player && currentBoard[c] === '') {
+                        return c;
+                    }
+                    if (currentBoard[a] === player && currentBoard[c] === player && currentBoard[b] === '') {
+                        return b;
+                    }
+                    if (currentBoard[b] === player && currentBoard[c] === player && currentBoard[a] === '') {
+                        return a;
+                    }
+                }
+                
+                return -1; // No winning move
+            }
+            
+            // Reset game button
+            resetGameBtn.addEventListener('click', () => {
+                currentBoard = ['', '', '', '', '', '', '', '', ''];
+                currentPlayer = 'X';
+                gameOver = false;
+                gameInfo.textContent = "Your turn! You are X";
+                updateBoard();
+            });
+            
+            // Close game button
+            closeBtn.addEventListener('click', () => {
+                gameContainer.style.display = 'none';
+            });
+            
+            // Initial game state
+            gameInfo.textContent = "Your turn! You are X";
+            
+            // Add CSS for the game
+            document.head.insertAdjacentHTML('beforeend', `
+                <style>
+                    .game-cell {
+                        background: rgba(var(--primary-color-rgb), 0.2);
+                        border: 1px solid var(--primary-color);
+                        border-radius: 8px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 2.5rem;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    }
+                    
+                    .game-cell:hover {
+                        background: rgba(var(--primary-color-rgb), 0.4);
+                    }
+                    
+                    .cell-x {
+                        color: #0dcaf0;
+                        text-shadow: 0 0 10px rgba(13, 202, 240, 0.7);
+                    }
+                    
+                    .cell-o {
+                        color: #fd7e14;
+                        text-shadow: 0 0 10px rgba(253, 126, 20, 0.7);
+                    }
+                    
+                    .win {
+                        animation: pulse 1s infinite alternate;
+                        border-color: #ff2a6d;
+                        box-shadow: 0 0 15px rgba(255, 42, 109, 0.7);
+                    }
+                </style>
+            `);
+        }
     </script>
 </body>
 </html>
