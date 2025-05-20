@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClaudeAGI.org - Exploring the Future of AI | Coming Soon</title>
     <meta name="description" content="ClaudeAGI.org is an upcoming community hub for AI enthusiasts and developers exploring the capabilities and future of generative AI. Join us soon for resources, discussions, and innovations.">
-    <meta name="keywords" content="AI, artificial intelligence, AI community, generative AI, AI resources, Claude AI">
+    <meta name="keywords" content="AI, artificial intelligence, AI community, generative AI, AI resources, Claude AI, Custom GPTs">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="ClaudeAGI.org - Exploring the Future of AI | Coming Soon">
     <meta property="og:description" content="ClaudeAGI.org is an upcoming community hub for AI enthusiasts and developers exploring the capabilities and future of generative AI.">
@@ -181,7 +181,7 @@
                 background-position: 0% 50%;
             }
         }
-
+        
         .h1-wrapper {
             position: relative;
             display: inline-block;
@@ -230,7 +230,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transform: translateZ(0);
         }
-
+        
         .tagline::before, .tagline::after {
             content: '';
             position: absolute;
@@ -296,7 +296,7 @@
             box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
             border-color: rgba(var(--secondary-color-rgb), 0.3);
         }
-
+        
         .interactive-area::after {
             content: '';
             position: absolute;
@@ -431,7 +431,7 @@
             right: 20px;
             text-align: right;
         }
-
+        
         .chat-bubble::before {
             content: '';
             position: absolute;
@@ -453,6 +453,7 @@
             right: 10px;
             background: var(--primary-color);
         }
+
 
         .typing-indicator {
             display: inline-block;
@@ -511,7 +512,7 @@
             opacity: 0;
             pointer-events: none;
         }
-
+        
         /* Countdown */
         .countdown-container {
             position: relative;
@@ -527,7 +528,7 @@
             transform: rotateX(10deg);
             transition: transform 0.5s ease;
         }
-
+        
         .countdown:hover {
             transform: rotateX(0deg);
         }
@@ -564,7 +565,7 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             border-color: rgba(var(--secondary-color-rgb), 0.3);
         }
-
+        
         .countdown-item::after {
             content: '';
             position: absolute;
@@ -595,7 +596,7 @@
             z-index: 1;
             transition: transform 0.3s ease;
         }
-
+        
         .countdown-item:hover .countdown-number {
             transform: scale(1.2);
         }
@@ -615,6 +616,177 @@
             color: var(--secondary-color);
             opacity: 1;
         }
+
+        /* GPT Models Section - NEW */
+        .gpt-models-container {
+            width: 100%;
+            /* max-width: 1200px; /* Already handled by parent .container */
+            margin: 3.5rem auto; /* Spacing from elements above/below */
+            padding: 0; /* Padding handled by parent .container if needed, or add specific here */
+            text-align: center;
+            position: relative;
+        }
+
+        .gpt-models-container h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color), var(--quaternary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .gpt-models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            perspective: 1500px; /* For 3D hover effects on cards */
+        }
+
+        .gpt-model-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform-style: preserve-3d;
+            transform: rotateX(3deg) rotateY(1deg); /* Subtle initial tilt */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            min-height: 260px; 
+            text-align: left; /* Align text inside card to left */
+        }
+
+        .gpt-model-card:hover {
+            transform: rotateX(0deg) rotateY(0deg) translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(var(--secondary-color-rgb), 0.45);
+        }
+
+        .gpt-model-card::before { /* Inner glow on hover */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px; 
+            box-shadow: 0 0 40px rgba(var(--secondary-color-rgb), 0.25) inset;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0; /* Behind content */
+        }
+
+        .gpt-model-card:hover::before {
+            opacity: 1;
+        }
+
+        .gpt-card-icon {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            height: 32px; /* Fixed height for icon */
+            display: flex;
+            align-items: center;
+            /* justify-content: center; /* If icon should be centered */
+            position: relative; /* For z-index */
+            z-index: 1;
+        }
+
+        .gpt-card-icon .gpt-card-svg-icon { 
+            width: 30px;
+            height: 30px;
+            stroke-width: 1.5; /* Adjust stroke for better visibility if needed */
+        }
+
+        .gpt-card-title {
+            font-size: 1.25rem; /* Slightly adjusted */
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.75rem;
+            line-height: 1.35;
+            flex-grow: 1; 
+            position: relative; /* For z-index */
+            z-index: 1;
+        }
+
+        .gpt-card-description {
+            font-size: 0.88rem; /* Slightly adjusted */
+            color: rgba(var(--text-color-rgb, 248, 249, 250), 0.75); 
+            margin-bottom: 1.5rem;
+            line-height: 1.55;
+            flex-grow: 2; 
+            min-height: 70px; 
+            position: relative; /* For z-index */
+            z-index: 1;
+        }
+
+        .gpt-card-link {
+            display: inline-block;
+            padding: 0.75rem 1.6rem; 
+            font-size: 0.85rem; 
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            border: none;
+            outline: none;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(var(--primary-color-rgb), 0.25);
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            margin-top: auto; /* Pushes button to bottom */
+            align-self: flex-start; /* Align button to the start of the flex cross-axis */
+            z-index: 1; /* Ensure button is above ::before pseudo-element */
+        }
+
+        .gpt-card-link:hover {
+            transform: translateY(-5px) scale(1.04);
+            box-shadow: 0 12px 30px rgba(var(--primary-color-rgb), 0.45);
+        }
+        
+        .gpt-card-link::before { /* Shine effect from main button */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.7s;
+        }
+
+        .gpt-card-link:hover::before {
+            left: 100%;
+        }
+
+        .gpt-card-link.disabled,
+        .gpt-card-link[disabled] {
+            background: linear-gradient(135deg, #3a3a4a, #4a4a5a); /* Darker disabled */
+            color: #999;
+            cursor: not-allowed;
+            box-shadow: 0 5px 15px rgba(0,0,0, 0.15);
+        }
+        .gpt-card-link.disabled:hover,
+        .gpt-card-link[disabled]:hover {
+            transform: none;
+            box-shadow: 0 5px 15px rgba(0,0,0, 0.15);
+        }
+        .gpt-card-link.disabled::before,
+        .gpt-card-link[disabled]::before {
+            display: none; /* No shine on disabled */
+        }
+        /* END GPT Models Section */
+
 
         /* Newsletter Form */
         .newsletter-container {
@@ -886,7 +1058,7 @@
                 transform: translate(50px, 100px) rotate(-5deg) scale(0.9);
             }
         }
-
+        
         /* Toast notification */
         .toast {
             position: fixed;
@@ -1020,7 +1192,7 @@
         .hidden {
             display: none !important;
         }
-
+        
         /* Mobile menu & responsiveness */
         .mobile-menu-toggle {
             display: none;
@@ -1105,7 +1277,7 @@
                 opacity: 0;
             }
         }
-
+        
         /* Easter Egg - Hidden Game */
         .game-container {
             position: fixed;
@@ -1163,7 +1335,7 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-
+        
         /* Animations */
         @keyframes pulse {
             0% {
@@ -1232,6 +1404,9 @@
             body {
                 cursor: auto;
             }
+            .gpt-models-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
@@ -1269,6 +1444,26 @@
             }
             .float-1, .float-2, .float-3, .float-4 {
                 opacity: 0.3;
+            }
+            .gpt-models-container h2 {
+                font-size: 2.4rem;
+            }
+            .gpt-models-grid {
+                gap: 1.5rem;
+            }
+            .gpt-model-card {
+                padding: 1.5rem 1.2rem;
+                min-height: 240px;
+            }
+            .gpt-card-title {
+                font-size: 1.15rem;
+            }
+            .gpt-card-description {
+                font-size: 0.85rem;
+            }
+            .gpt-card-link {
+                padding: 0.7rem 1.4rem;
+                font-size: 0.8rem;
             }
         }
 
@@ -1317,6 +1512,16 @@
                 width: 40px;
                 height: 40px;
             }
+            .gpt-models-container h2 {
+                font-size: 2rem;
+            }
+            .gpt-models-grid {
+                grid-template-columns: 1fr; /* Single column */
+            }
+            .gpt-model-card {
+                transform: rotateX(0deg) rotateY(0deg); /* No initial tilt */
+                min-height: auto; /* Adjust min height for single column */
+            }
         }
 
         @media (max-width: 375px) {
@@ -1336,13 +1541,22 @@
             .countdown-title, .newsletter-container::before {
                 font-size: 0.8rem;
             }
+            .gpt-models-container h2 {
+                font-size: 1.8rem;
+            }
+            .gpt-card-title {
+                font-size: 1.1rem;
+            }
+            .gpt-card-description {
+                font-size: 0.8rem;
+            }
         }
-
+        
         /* Light/Dark Mode Toggle */
         .theme-toggle {
             position: absolute;
             top: 20px;
-            right: 20px;
+            right: 20px; /* Default position */
             width: 45px;
             height: 45px;
             border-radius: 50%;
@@ -1356,6 +1570,13 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
+        
+        @media (max-width: 768px) { /* Adjust toggle position if mobile menu is active */
+            .theme-toggle {
+                right: 70px; /* Move left to accommodate mobile menu */
+            }
+        }
+
 
         .theme-toggle:hover {
             transform: scale(1.1);
@@ -1393,7 +1614,7 @@
     <div class="cursor-pulse"></div>
     
     <!-- Theme Toggle -->
-    <div class="theme-toggle" id="theme-toggle">
+    <div class="theme-toggle" id="theme-toggle" title="Toggle Theme (Coming Soon)">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
             <path d="M12 3v1"></path>
@@ -1468,6 +1689,16 @@
                 </div>
             </div>
 
+            <!-- GPT MODELS SECTION START -->
+            <div class="gpt-models-container">
+                <h2>Explore Our Custom GPTs</h2>
+                <div class="gpt-models-grid" id="gpt-models-grid-content">
+                    <!-- GPT model cards will be dynamically inserted here by JavaScript -->
+                </div>
+            </div>
+            <!-- GPT MODELS SECTION END -->
+
+
             <div class="newsletter-container">
                 <div class="newsletter-form">
                     <div class="form-group">
@@ -1531,6 +1762,7 @@
             initNewsletterForm();
             initInteractiveElements();
             initCodeRain();
+            initGptModelCards(); // NEW: Initialize GPT Model Cards
             
             // Set Konami code for easter egg game
             let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
@@ -1731,7 +1963,7 @@
             });
             
             // Add hover effect for interactive elements
-            const interactiveElements = document.querySelectorAll('button, a, .interactive-area, input, .countdown-item, .theme-toggle');
+            const interactiveElements = document.querySelectorAll('button, a, .interactive-area, input, .countdown-item, .theme-toggle, .gpt-model-card'); // Added .gpt-model-card
             
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => {
@@ -2044,6 +2276,7 @@
             // Helper function to update countdown digits with animation
             function updateCountdownDigit(id, newValue) {
                 const element = document.getElementById(id);
+                if (!element) return; // Element might not exist if countdown is removed
                 const currentValue = element.textContent;
                 const newValueStr = newValue.toString().padStart(2, '0');
                 
@@ -2147,12 +2380,12 @@
                 const y = centerY + Math.sin(radians) * distance;
                 
                 const particle = document.createElement('div');
-                particle.className = 'cursor-trail';
+                particle.className = 'cursor-trail'; // Re-use existing class for similar effect
                 particle.style.left = x + 'px';
                 particle.style.top = y + 'px';
                 particle.style.width = (3 + Math.random() * 4) + 'px';
                 particle.style.height = particle.style.width;
-                particle.style.background = '#fd7e14';
+                particle.style.background = 'var(--tertiary-color)'; // Use tertiary color
                 particle.style.opacity = '1';
                 particle.style.zIndex = '9999';
                 
@@ -2209,7 +2442,7 @@
             }, {once: true});
         }
         
-        // Add shake animation
+        // Add shake animation CSS
         document.head.insertAdjacentHTML('beforeend', `
             <style>
                 @keyframes shake {
@@ -2235,7 +2468,7 @@
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = (y - centerY) / 20; // Reduce divisor for more dramatic effect
+                const rotateX = (y - centerY) / 20; 
                 const rotateY = (centerX - x) / 20;
                 
                 // Apply rotation
@@ -2249,33 +2482,15 @@
                 
                 // Remove transition after animation completes
                 setTimeout(() => {
-                    interactiveArea.style.transition = 'none';
+                    interactiveArea.style.transition = 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)'; // Restore original transition
                 }, 500);
             });
             
-            // Add glowing border effect on countdown items hover
-            const countdownItems = document.querySelectorAll('.countdown-item');
-            
-            countdownItems.forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    // Create glow effect around the item
-                    this.style.borderColor = 'rgba(var(--secondary-color-rgb), 0.5)';
-                    this.style.boxShadow = '0 0 20px rgba(var(--secondary-color-rgb), 0.3)';
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                    this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.3)';
-                });
-            });
+            // Add glowing border effect on countdown items hover (already covered by general hover effect)
         }
         
         // Theme toggling functionality
         function toggleTheme() {
-            // We'll just do a fun visual effect for now 
-            // In a real implementation, this would toggle between light/dark themes
-            
-            // Simulate a visual flash effect
             const flash = document.createElement('div');
             flash.style.position = 'fixed';
             flash.style.top = '0';
@@ -2299,14 +2514,11 @@
                     
                     setTimeout(() => {
                         flash.remove();
-                        
-                        // Show toast indicating this feature is coming
                         showToast('Theme toggle will be available at launch! 🎨');
                     }, 300);
                 }, 100);
             }, 10);
             
-            // Rotate the toggle icon
             const toggle = document.getElementById('theme-toggle');
             toggle.style.transform = 'rotate(180deg)';
             
@@ -2319,17 +2531,14 @@
         function initCodeRain() {
             const rainContainer = document.getElementById('rain-container');
             const symbols = '01010101ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+{}|:<>?';
-            const columnCount = Math.floor(window.innerWidth / 20); // Adjust spacing as needed
+            const columnCount = Math.floor(window.innerWidth / 20); 
             
-            // Create rain columns
             for (let i = 0; i < columnCount; i++) {
                 const column = document.createElement('div');
                 column.className = 'rain-column';
                 
-                // Random positioning
                 column.style.left = (i * 20 + Math.random() * 10 - 5) + 'px';
                 
-                // Generate random length of characters
                 const length = 10 + Math.floor(Math.random() * 15);
                 let rainText = '';
                 
@@ -2339,12 +2548,195 @@
                 
                 column.textContent = rainText;
                 
-                // Set random animation properties
                 const duration = 5 + Math.random() * 10;
                 column.style.animationDuration = duration + 's';
                 column.style.animationDelay = Math.random() * 5 + 's';
                 
                 rainContainer.appendChild(column);
+            }
+        }
+
+        // NEW: Initialize GPT Model Cards
+        function initGptModelCards() {
+            const gptModelsData = [
+                { name: "SEO Content Strategist", url: "https://chatgpt.com/g/g-68044a69dd648191bb1411065fda1b64-seo-content-strategist" },
+                { name: "Content Creator", url: "https://chatgpt.com/g/g-68044a2156588191b32f0ea69aa8f2f7-content-creator" },
+                { name: "Search Engine Pro", url: "https://chatgpt.com/g/g-680449d88b908191b8f97db2f7d4a584-search-engine-pro" },
+                { name: "Social Bio Optimizer", url: "https://chatgpt.com/g/g-68044985aeb48191b8833b68c5c4f872-social-bio-optimizer" },
+                { name: "SEO Outreach Email Assistant", url: "https://chatgpt.com/g/g-6804495328f88191b328568d03382cb9-seo-outreach-email-assistant" },
+                { name: "SEO Content Strategist", url: "https://chatgpt.com/g/g-680448acd6f88191b464e21bfea5cab5-seo-content-strategist" },
+                { name: "Sales Objection Crusher", url: "https://chatgpt.com/g/g-68044864c4f0819183c816f92d2c2897-sales-objection-crusher" },
+                { name: "Value Proposition Strategist", url: "https://chatgpt.com/g/g-680447a4a65c8191b25c167522020757-value-proposition-strategist" },
+                { name: "Strategic Scenario Planner", url: "https://chatgpt.com/g/g-68044772dbc481919424f1c5f7eacc47-strategic-scenario-planner" },
+                { name: "Brand Soul Strategist", url: "https://chatgpt.com/g/g-680447155a3881919e8da92bc206aae6-brand-soul-strategist" },
+                { name: "Industry Shaker", url: "https://chatgpt.com/g/g-680446e110e48191aee1db8d85cf8b9b-industry-shaker" },
+                { name: "Scale Smart Strategist", url: "https://chatgpt.com/g/g-6804468403a08191bdfc9b4f4defb451-scale-smart-strategist" },
+                { name: "Audience Insights Strategist", url: "https://chatgpt.com/g/g-6804465870448191a0e78f64ccab29a0-audience-insights-strategist" },
+                { name: "Competitive Edge Scout", url: "https://chatgpt.com/g/g-6804460461d881919e223e985d040df6-competitive-edge-scout" },
+                { name: "Task Risk Planner", url: "https://chatgpt.com/g/g-680445ba0d808191869f92a27d0b0fa8-task-risk-planner" },
+                { name: "VibeCast Writer", url: "https://chatgpt.com/g/g-68044249ddec819192eab7df2d06b53d-vibecast-writer" },
+                { name: "ShellScript Assistant", url: "https://chatgpt.com/g/g-6802828244bc8191be03a68d7585553a-shellscript-assistant" },
+                { name: "AP World History GPT", url: "https://chatgpt.com/g/g-67faf1fb56e481919f225f4b55d3f201-ap-world-history-gpt" },
+                { name: "🇺🇸 AP U.S. History GPT | DBQs, Timelines, FRQs", url: "https://chatgpt.com/g/g-67faf0e9c564819195a7e02630dd2f34-ap-u-s-history-gpt-dbqs-timelines-frqs" },
+                { name: "AP U.S. Government GPT", url: "https://chatgpt.com/g/g-67faf018ea3481918801165163617d11-ap-u-s-government-gpt" },
+                { name: "AP Psychology | Units, Theories, FRQs, Exam Prep", url: "https://chatgpt.com/g/g-67faef48c6c881919514d9df31f5de12-ap-psychology-units-theories-frqs-exam-prep" },
+                { name: "AP Microeconomics | Theory, Diagrams, MCQs", url: "https://chatgpt.com/g/g-67faee754f808191b4d71e8cb56a89e1-ap-microeconomics-theory-diagrams-mcqs" },
+                { name: "AP Macroeconomics | Graphs, FRQs, Models", url: "https://chatgpt.com/g/g-67faedc1df408191a0ca9ee490df9e4d-ap-macroeconomics-graphs-frqs-models" },
+                { name: "AP Human Geography | Theories, Case Studies & FRQs", url: "https://chatgpt.com/g/g-67faece77ff08191abb3aea67a3d5f74-ap-human-geography-theories-case-studies-frqs" },
+                { name: "AP European History | Political, Social...", url: "https://chatgpt.com/g/g-67faec08eec08191825cb9c4f7f5cd1b-ap-european-history-political-social" },
+                { name: "🌐 AP Comparative Government GPT", url: "https://chatgpt.com/g/g-67faeb1be4888191ac1c854022aaff25-ap-comparative-government-gpt" },
+                { name: "AP African American Studies | Civil Rights...", url: "https://chatgpt.com/g/g-67faea19b4708191a29ab4cb68696bc9-ap-african-american-studies-civil-rights" },
+                { name: "🧲 AP Physics C: Mechanics", url: "https://chatgpt.com/g/g-67fae95f0b0c8191a42695dfc1ec9089-ap-physics-c-mechanics" },
+                { name: "AP Physics C: Electricity & Magnetism", url: "https://chatgpt.com/g/g-67fae89012108191ad5e24a457bc212b-ap-physics-c-electricity-magnetism" },
+                { name: "⚛️ AP Physics 2 | Fluids, Circuits, Thermo, FRQs", url: "https://chatgpt.com/g/g-67fae79ae730819184bc61ea912e2708-ap-physics-2-fluids-circuits-thermo-frqs" },
+                { name: "⚡ AP Physics 1 | Forces, Kinematics, FRQs", url: "https://chatgpt.com/g/g-67fae6d8a5d88191a8c65df0bcb05454-ap-physics-1-forces-kinematics-frqs" },
+                { name: "⚗️ AP Chemistry | Reactions, FRQs, Stoichiometry", url: "https://chatgpt.com/g/g-67fae626988481918ef596f7bec5e0fb-ap-chemistry-reactions-frqs-stoichiometry" },
+                { name: "🧬 AP Biology | Diagrams, FRQs, MCQs & Exam Review", url: "https://chatgpt.com/g/g-67fae4de5ae48191bb9dbc5ffd160410-ap-biology-diagrams-frqs-mcqs-exam-review" },
+                { name: "📈 AP Statistics | Step-by-Step Analysis", url: "https://chatgpt.com/g/g-67fae404b918819188f74b816f90eedd-ap-statistics-step-by-step-analysis" },
+                { name: "📘 AP Precalculus | Step-by-Step Solutions", url: "https://chatgpt.com/g/g-67fae2c903488191a8c33e2fbc927fb8-ap-precalculus-step-by-step-solutions" },
+                { name: "AP Computer Science Principles | Big Ideas, MCQs", url: "https://chatgpt.com/g/g-67fae239ec708191b17597d40a6b4be9-ap-computer-science-principles-big-ideas-mcqs" },
+                { name: "AP Computer Science A | Coding, FRQs, & Exam Prep.", url: "https://chatgpt.com/g/g-67fae10e8e9c8191800a3cc675815ef4-ap-computer-science-a-coding-frqs-exam-prep" },
+                { name: "AP Calculus AB/BC Tutor | Step-by-Step Solutions", url: "https://chatgpt.com/g/g-67fadf917104819181c6417661b0941f-ap-calculus-ab-bc-tutor-step-by-step-solutions" },
+                { name: "Prompt Design Expert", url: "https://chatgpt.com/g/g-67fa7f6bf2748191811b0d4d7e83a53c-prompt-design-expert" },
+                { name: "Product Advertisement Ideas", url: "https://chatgpt.com/g/g-67f86423347c8191a4c03ff04633c8c6-product-advertisement-ideas" },
+                { name: "Interview Prep QA", url: "https://chatgpt.com/g/g-67f8631a31d881918c83fa780c3860e6-interview-prep-qa" },
+                { name: "EduPath Dubai", url: "https://chatgpt.com/g/g-67f84eb8a0a08191bc4877105fbc1578-edupath-dubai" },
+                { name: "Lesson Planner Pro", url: "https://chatgpt.com/g/g-67f7927ca3248191b56711bacdb95813-lesson-planner-pro" },
+                { name: "Educational content generator", url: "https://chatgpt.com/g/g-67f792018e208191ac8c3ed8315cdb2a-educational-content-generator" },
+                { name: "Product Report Assistant", url: "https://chatgpt.com/g/g-67f790dd09f081918a78dac8d5f8c3aa-product-report-assistant" },
+                { name: "Financial Analyst Assistant", url: "https://chatgpt.com/g/g-67f7904833988191b13407bd198c5713-financial-analyst-assistant" },
+                { name: "Summer Arts Buddy", url: "https://chatgpt.com/g/g-67f78fac086481918b8ae09fb3c42ce1-summer-arts-buddy" },
+                { name: "Business Development Associate", url: "https://chatgpt.com/g/g-67f78f3a87b881918d1872cc0503c541-business-development-associate" },
+                { name: "Animal Helper", url: "https://chatgpt.com/g/g-67f78eb112fc8191960ff477960c9cd8-animal-helper" },
+                { name: "Ad Creative Director", url: "https://chatgpt.com/g/g-67f78ce955088191add039b3b5531975-ad-creative-director" },
+                { name: "SAT Math Maestro", url: "https://chatgpt.com/g/g-67f59d06b4908191a4d5d54b2f2254e8-sat-math-maestro" },
+                { name: "Career Growth Coach", url: "https://chatgpt.com/g/g-67f470f4cc388191bb4513cc5242efec-career-growth-coach" },
+                { name: "Pro. SAT", url: "https://chatgpt.com/g/g-67cfccac0c648191bde524372297a4dc-pro-sat" },
+                { name: "Manus", url: "https://chatgpt.com/g/g-67cf50df045c8191ba832bb634ca8b26-manus" },
+                { name: "Code Debugger Pro", url: "https://chatgpt.com/g/g-67cf4d3e25a48191ab9827957d6cfed2-code-debugger-pro" },
+                { name: "Scalable Systems Engineer", url: "https://chatgpt.com/g/g-67bae3406dcc8191b55c73eb5152fd2b-scalable-systems-engineer" },
+                { name: "Tech Specs Architect", url: "https://chatgpt.com/g/g-67bae2cb20ac8191be5cc1ad5ec292a1-tech-specs-architect" },
+                { name: "UXSensei", url: "https://chatgpt.com/g/g-67bae233814c81918928fc8637b2a1c3-uxsensei" },
+                { name: "SlangU", url: "https://chatgpt.com/g/g-67a4e5d166908191864005362bf5d3b7-slangu" },
+                { name: "DSAT Tutor", url: "https://chatgpt.com/g/g-iG6o7LuRG-dsat-tutor" },
+                { name: "Public Speaking Coach", url: "https://chatgpt.com/g/g-UTzzszssk-public-speaking-coach" },
+                { name: "Pandit ji", url: "https://chatgpt.com/g/g-EY1ScCWNK-pandit-ji" },
+                { name: "IT Systems Architect", url: "https://chatgpt.com/g/g-1ROcgHIvl-it-systems-architect" },
+                { name: "SEO Advisor", url: "https://chatgpt.com/g/g-OotVyf4gK-seo-advisor" },
+                { name: "Converter Expert", url: "https://chatgpt.com/g/g-1LSVXdFLx-converter-expert" },
+                { name: "Dubai Business Setup Expert", url: "https://chatgpt.com/g/g-83eIaCdIQ-dubai-business-setup-expert" },
+                { name: "iTutor", url: "https://chatgpt.com/g/g-txp7j5FVH-itutor" },
+                { name: "Tech Architect Expert", url: null },
+                { name: "SATHELP24x7", url: "https://chatgpt.com/g/g-48Lm7HTY8-sathelp24x7" },
+                { name: "HLM", url: "https://chatgpt.com/g/g-roBmuyZql-hlm" },
+                { name: "Data Analysis Guide", url: null },
+                { name: "Sustainability Consultant", url: "https://chatgpt.com/g/g-dXZNhbtAA-sustainability-consultant" },
+                { name: "MathHints", url: "https://chatgpt.com/g/g-yp0FDNnkP-mathhints" },
+                { name: "Senior Laravel Developer", url: null },
+                { name: "AP Computer Science Tutor", url: "https://chatgpt.com/g/g-ZV6Adzw3E-ap-computer-science-tutor" },
+                { name: "AP Physics 1 Tutor", url: "https://chatgpt.com/g/g-hmcGnFKU6-ap-physics-1-tutor" },
+                { name: "NEOA Tutor", url: "https://chatgpt.com/g/g-aoktPapv8-neoa-tutor" },
+                { name: "Senior React Developer", url: "https://chatgpt.com/g/g-xRQKGI4WV-senior-react-developer" },
+                { name: "UI/UX Designer", url: "https://chatgpt.com/g/g-Rr6m9qJLA-ui-ux-designer" },
+                { name: "Dautom", url: "https://chatgpt.com/g/g-CuEyzkQuf-dautom" },
+                { name: "SwiftUI Engineer", url: "https://chatgpt.com/g/g-66JMtIA79-swiftui-engineer" },
+                { name: "Cinema 4D", url: "https://chatgpt.com/g/g-LJmud9Xkk-cinema-4d" },
+                { name: "IB Chemistry Study Guide", url: "https://chatgpt.com/g/g-5rk1Wqgwb-ib-chemistry-study-guide" },
+                { name: "IB Business and Management Study Guide", url: "https://chatgpt.com/g/g-4xR6XiwSB-ib-business-and-management-study-guide" },
+                { name: "Doctor Strange", url: "https://chatgpt.com/g/g-91YXm9LEl-doctor-strange" },
+                { name: "Thor", url: "https://chatgpt.com/g/g-1xzwABi74-thor" },
+                { name: "Iron Man", url: "https://chatgpt.com/g/g-QeWSUqYBy-iron-man" },
+                { name: "Groot", url: "https://chatgpt.com/g/g-ccWul70pa-groot" },
+                { name: "CDN", url: "https://chatgpt.com/g/g-UOF5YSmOZ-cdn" },
+                { name: "IdeaHub", url: "https://chatgpt.com/g/g-YKcb1JGvS-ideahub" },
+                { name: "Artist", url: "https://chatgpt.com/g/g-3DThmsAN7-artist" },
+                { name: "IB Math Tutor", url: "https://chatgpt.com/g/g-Xg5Lji8PW-ib-math-tutor" },
+                { name: "SciStory Creator", url: "https://chatgpt.com/g/g-2m2TKxPXr-scistory-creator" },
+                { name: "AP Microeconomics", url: "https://chatgpt.com/g/g-f1IuVw7xb-ap-microeconomics" },
+                { name: "Environmental Science Tutor", url: "https://chatgpt.com/g/g-TLjxr80nf-environmental-science-tutor" },
+                { name: "AP Biology Buddy", url: "https://chatgpt.com/g/g-jSGvSG3fj-ap-biology-buddy" },
+                { name: "Neoa Edge", url: "https://chatgpt.com/g/g-hKW9uBFMC-neoa-edge" },
+                { name: "TikTok Creativity Assistant", url: null },
+                { name: "YouTube Studio Assistant", url: null },
+                { name: "Fitness Coach", url: "https://chatgpt.com/g/g-TGrdf4zjJ-fitness-coach" },
+                { name: "NEOA API Builder", url: "https://chatgpt.com/g/g-XHe68A6Ea-neoa-api-builder" },
+                { name: "NEOA AI Builder", url: "https://chatgpt.com/g/g-P3KG08QUw-neoa-ai-builder" },
+                { name: "NEOA AI Architect", url: "https://chatgpt.com/g/g-7OUWzcOTS-neoa-ai-architect" },
+                { name: "NEOA Legal Expert", url: "https://chatgpt.com/g/g-i2cVoMfPM-neoa-legal-expert" },
+                { name: "Portfolio Guide", url: "https://chatgpt.com/g/g-S2pLeEIFv-portfolio-guide" },
+                { name: "NEOA Copilot", url: "https://chatgpt.com/g/g-hRK6Lf0V9-neoa-copilot" },
+                { name: "SAT Tutor", url: "https://chatgpt.com/g/g-uybXqQMO0-sat-tutor" },
+                { name: "Social Media Maven", url: "https://chatgpt.com/g/g-09VBM5et2-social-media-maven" },
+                { name: "NEP", url: "https://chatgpt.com/g/g-9bLluZoio-nep" },
+                { name: "NEOA", url: "https://chatgpt.com/g/g-VCbu0DRFA-neoa" }
+            ];
+
+            const gridContainer = document.getElementById('gpt-models-grid-content');
+            const iconSvg = `
+                <svg class="gpt-card-svg-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="5" width="14" height="14" rx="2" ry="2"></rect>
+                    <line x1="10" y1="3" x2="10" y2="5"></line>
+                    <line x1="14" y1="3" x2="14" y2="5"></line>
+                    <line x1="3" y1="10" x2="5" y2="10"></line>
+                    <line x1="3" y1="14" x2="5" y2="14"></line>
+                    <line x1="10" y1="19" x2="10" y2="21"></line>
+                    <line x1="14" y1="19" x2="14" y2="21"></line>
+                    <line x1="19" y1="10" x2="21" y2="10"></line>
+                    <line x1="19" y1="14" x2="21" y2="14"></line>
+                    <circle cx="12" cy="12" r="2"></circle>
+                </svg>`;
+
+            gptModelsData.forEach(model => {
+                const card = document.createElement('div');
+                card.className = 'gpt-model-card';
+
+                const description = `Discover how this custom AI, ${model.name}, can assist you. Click to explore its capabilities on ChatGPT.`;
+
+                let buttonHtml;
+                if (model.url) {
+                    buttonHtml = `<a href="${model.url}" class="gpt-card-link" target="_blank" rel="noopener noreferrer">Try It Out</a>`;
+                } else {
+                    buttonHtml = `<button class="gpt-card-link disabled" disabled>Coming Soon</button>`;
+                }
+
+                card.innerHTML = `
+                    <div class="gpt-card-icon">${iconSvg}</div>
+                    <h3 class="gpt-card-title">${model.name}</h3>
+                    <p class="gpt-card-description">${description}</p>
+                    ${buttonHtml}
+                `;
+                gridContainer.appendChild(card);
+            });
+
+            // Re-initialize cursor effects for newly added cards if not covered by a general selector
+            if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                const newCards = gridContainer.querySelectorAll('.gpt-model-card');
+                const cursor = document.querySelector('.custom-cursor');
+                const cursorDot = document.querySelector('.cursor-dot');
+                const cursorPulse = document.querySelector('.cursor-pulse');
+                const glow = document.getElementById('glow');
+
+                newCards.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.style.width = '60px'; cursor.style.height = '60px';
+                        cursor.style.borderColor = 'var(--secondary-color)';
+                        cursor.style.backgroundColor = 'rgba(var(--secondary-color-rgb), 0.1)';
+                        cursorDot.style.background = 'var(--tertiary-color)';
+                        cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                        cursorPulse.classList.add('active'); cursorPulse.style.display = 'block';
+                        cursorPulse.style.left = cursor.style.left; cursorPulse.style.top = cursor.style.top;
+                        glow.style.opacity = '0.8';
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursor.style.width = '40px'; cursor.style.height = '40px';
+                        cursor.style.borderColor = 'var(--primary-color)';
+                        cursor.style.backgroundColor = 'transparent';
+                        cursorDot.style.background = 'var(--secondary-color)';
+                        cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                        cursorPulse.classList.remove('active'); cursorPulse.style.display = 'none';
+                        glow.style.opacity = '0.5';
+                    });
+                });
             }
         }
         
@@ -2425,7 +2817,7 @@
                 const cells = gameBoard.querySelectorAll('.game-cell');
                 cells.forEach((cell, i) => {
                     cell.textContent = currentBoard[i];
-                    cell.className = 'game-cell';
+                    cell.className = 'game-cell'; // Reset classes
                     if (currentBoard[i] === 'X') {
                         cell.classList.add('cell-x');
                     } else if (currentBoard[i] === 'O') {
@@ -2457,13 +2849,11 @@
             }
             
             function makeAIMove() {
-                // Simple AI that tries to win or block
-                // In a real implementation, you might use minimax algorithm
-                
-                // Check for win
                 const move = findBestMove();
-                currentBoard[move] = 'O';
-                updateBoard();
+                if (move !== -1) { // Check if a valid move was found
+                    currentBoard[move] = 'O';
+                    updateBoard();
+                }
             }
             
             function findBestMove() {
@@ -2485,37 +2875,37 @@
                     return availableCorners[Math.floor(Math.random() * availableCorners.length)];
                 }
                 
-                // Take any available space
+                // Take any available side
+                const sides = [1, 3, 5, 7];
+                const availableSides = sides.filter(i => currentBoard[i] === '');
+                if(availableSides.length > 0) {
+                    return availableSides[Math.floor(Math.random() * availableSides.length)];
+                }
+
+                // Fallback: Take first available (should be rare with above logic)
                 const availableMoves = currentBoard.map((cell, i) => cell === '' ? i : -1).filter(i => i !== -1);
                 if (availableMoves.length > 0) {
                     return availableMoves[Math.floor(Math.random() * availableMoves.length)];
                 }
                 
-                return -1; // No moves available (shouldn't happen)
+                return -1; // No moves available
             }
             
             function findWinningMove(player) {
                 const winPatterns = [
-                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-                    [0, 4, 8], [2, 4, 6]             // Diagonals
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+                    [0, 4, 8], [2, 4, 6]             
                 ];
                 
                 for (const pattern of winPatterns) {
                     const [a, b, c] = pattern;
-                    // If two cells have the player's mark and the third is empty
-                    if (currentBoard[a] === player && currentBoard[b] === player && currentBoard[c] === '') {
-                        return c;
-                    }
-                    if (currentBoard[a] === player && currentBoard[c] === player && currentBoard[b] === '') {
-                        return b;
-                    }
-                    if (currentBoard[b] === player && currentBoard[c] === player && currentBoard[a] === '') {
-                        return a;
-                    }
+                    if (currentBoard[a] === player && currentBoard[b] === player && currentBoard[c] === '') return c;
+                    if (currentBoard[a] === player && currentBoard[c] === player && currentBoard[b] === '') return b;
+                    if (currentBoard[b] === player && currentBoard[c] === player && currentBoard[a] === '') return a;
                 }
                 
-                return -1; // No winning move
+                return -1; 
             }
             
             // Reset game button
@@ -2524,7 +2914,7 @@
                 currentPlayer = 'X';
                 gameOver = false;
                 gameInfo.textContent = "Your turn! You are X";
-                updateBoard();
+                updateBoard(); // This will also clear win highlights
             });
             
             // Close game button
@@ -2535,42 +2925,29 @@
             // Initial game state
             gameInfo.textContent = "Your turn! You are X";
             
-            // Add CSS for the game
-            document.head.insertAdjacentHTML('beforeend', `
-                <style>
-                    .game-cell {
-                        background: rgba(var(--primary-color-rgb), 0.2);
-                        border: 1px solid var(--primary-color);
-                        border-radius: 8px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 2.5rem;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                    }
-                    
-                    .game-cell:hover {
-                        background: rgba(var(--primary-color-rgb), 0.4);
-                    }
-                    
+            // Add CSS for the game if not already present
+            if (!document.getElementById('game-styles')) {
+                const gameStyles = document.createElement('style');
+                gameStyles.id = 'game-styles';
+                gameStyles.innerHTML = `
                     .cell-x {
-                        color: #0dcaf0;
+                        color: #0dcaf0; /* var(--secondary-color) */
                         text-shadow: 0 0 10px rgba(13, 202, 240, 0.7);
                     }
                     
                     .cell-o {
-                        color: #fd7e14;
+                        color: #fd7e14; /* var(--tertiary-color) */
                         text-shadow: 0 0 10px rgba(253, 126, 20, 0.7);
                     }
                     
                     .win {
-                        animation: pulse 1s infinite alternate;
-                        border-color: #ff2a6d;
-                        box-shadow: 0 0 15px rgba(255, 42, 109, 0.7);
+                        animation: pulse 1s infinite alternate; /* Re-use existing pulse animation */
+                        border-color: #ff2a6d !important; /* var(--quaternary-color) */
+                        box-shadow: 0 0 15px rgba(255, 42, 109, 0.7) !important;
                     }
-                </style>
-            `);
+                `;
+                document.head.appendChild(gameStyles);
+            }
         }
     </script>
 </body>
