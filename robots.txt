@@ -1,0 +1,7 @@
+# ── ClaudeAGI.org : Robots Directives (Open Access) ──
+User-agent: *
+Allow: /
+
+# XML sitemap location
+Sitemap: https://claudeagi.org/sitemap.xml
+Host: https://claudeagi.org
