@@ -1,0 +1,9 @@
+# ── ClaudeAGI.org : Large-Language-Model Access Policy ──
+# Draft spec: https://llmspec.org
+
+User-agent: *
+Allow: /
+
+# Optional metadata
+Owner: admin@claudeagi.org
+Last-Modified: 2025-05-21
